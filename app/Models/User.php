@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Social;
+use App\Models\Event;
 
 class User extends Authenticatable
 {
@@ -47,5 +48,10 @@ class User extends Authenticatable
     public function social()
     {
         return $this->hasMany(Social::class);
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
     }
 }

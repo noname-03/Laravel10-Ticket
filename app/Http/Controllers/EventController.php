@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\EventType;
 use Illuminate\Http\Request;
 
-class EventTypeController extends Controller
+class EventController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $eventType = EventType::all();
-        return view('pages.eventType.index', compact('eventType'));
+        $events = Event::all();
+        return view('pages.event.index', compact('events'));
     }
 
     /**
@@ -21,7 +23,8 @@ class EventTypeController extends Controller
      */
     public function create()
     {
-        return view('pages.eventType.create');
+        $eventTypes = EventType::all();
+        return view('pages.event.create', compact('eventTypes'));
     }
 
     /**
@@ -31,11 +34,15 @@ class EventTypeController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'event_type_id' => 'required|exists:event_types,id',
+            'date' => 'required',
+            'description' => 'required',
         ]);
 
-        EventType::create($request->all());
+        $request['user_id'] = auth()->user()->id;
+        Event::create($request->all());
 
-        return redirect()->route('eventType.index')->with('success', 'Data Berhasil Di Tambahkan.!');
+        return redirect()->route('event.index')->with('success', 'Data Berhasil Di Tambahkan.!');
     }
 
     /**
@@ -51,8 +58,9 @@ class EventTypeController extends Controller
      */
     public function edit($id)
     {
-        $eventType = EventType::find($id);
-        return view('pages.eventType.edit', compact('eventType'));
+        $event = Event::find($id);
+        $eventTypes = EventType::all();
+        return view('pages.event.edit', compact('event', 'eventTypes'));
     }
 
     /**
@@ -62,10 +70,15 @@ class EventTypeController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'event_type_id' => 'required|exists:event_types,id',
+            'date' => 'required',
+            'description' => 'required',
         ]);
-        EventType::find($id)->update($request->all());
 
-        return redirect()->route('eventType.index')->with('success', 'Data Berhasil Di Perbarui.!');
+        $request['user_id'] = auth()->user()->id;
+        Event::find($id)->update($request->all());
+
+        return redirect()->route('event.index')->with('success', 'Data Berhasil Di Perbarui.!');
     }
 
     /**
@@ -73,7 +86,7 @@ class EventTypeController extends Controller
      */
     public function destroy($id)
     {
-        EventType::find($id)->delete();
+        Event::find($id)->delete();
         return response()->json(['message' => 'Data Berhasil Di Hapus.!']);
     }
 }

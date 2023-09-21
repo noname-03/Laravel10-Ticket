@@ -38,6 +38,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('event.index') }}" class="nav-link @yield('event')">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Event
+                        </p>
+                    </a>
+                </li>
 
             </ul>
         </nav>

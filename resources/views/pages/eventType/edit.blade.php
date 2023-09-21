@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Perbarui Data Tipe Event')
 @section('data.product', 'menu-open')
-@section('eventType', 'active')
+@section('event.type', 'active')
 @section('content')
     <div class="content-wrapper" style="min-height: 1345.31px;">
         <!-- Content Header (Page header) -->

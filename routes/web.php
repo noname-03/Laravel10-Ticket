@@ -23,4 +23,5 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('eventType', App\Http\Controllers\EventTypeController::class);
+    Route::resource('event', App\Http\Controllers\EventController::class);
 });

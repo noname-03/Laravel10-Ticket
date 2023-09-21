@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Data Tipe Event')
+@section('title', 'Data Event')
 @section('data.product', 'menu-open')
-@section('event.type', 'active')
+@section('event', 'active')
 @push('css')
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="{{ asset('admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
@@ -12,12 +12,12 @@
         <section class="content-header">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Data Tipe Event</h1>
+                    <h1 class="m-0">Data Event</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Data Tipe Event</li>
+                        <li class="breadcrumb-item active">Data Event</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -30,7 +30,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{ route('eventType.create') }}" type="button" class="btn btn-primary btn-sm"><i
+                                <a href="{{ route('event.create') }}" type="button" class="btn btn-primary btn-sm"><i
                                         class="fas fa-plus"></i> Tambah
                                     Data</a>
                             </div>
@@ -45,18 +45,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($eventType as $item)
+                                        @foreach ($events as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->title }}</td>
                                                 <td style="text-align: center;">
                                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                                        <a href="{{ route('eventType.edit', $item->id) }}"
+                                                        <a href="{{ route('event.edit', $item->id) }}"
                                                             class="btn btn-sm btn-outline-secondary">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                         <button type="submit"
-                                                            onclick="confirmDelete('{{ route('eventType.destroy', $item->id) }}')"
+                                                            onclick="confirmDelete('{{ route('event.destroy', $item->id) }}')"
                                                             class="btn btn-sm btn-outline-danger delete-button">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
