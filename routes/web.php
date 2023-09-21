@@ -20,4 +20,7 @@ Route::get('auth/{provider}', [App\Http\Controllers\Auth\LoginController::class,
 Route::get('auth/{provider}/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback'])->name('login.social.callback');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('eventType', App\Http\Controllers\EventTypeController::class);
+});
