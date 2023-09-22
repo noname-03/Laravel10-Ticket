@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Detail Data User')
 @section('data.product', 'menu-open')
-@section('ticket', 'active')
+{{-- @section('ticket', 'active') --}}
 @push('css')
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="{{ asset('admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">

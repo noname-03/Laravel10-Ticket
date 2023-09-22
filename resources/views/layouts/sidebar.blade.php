@@ -24,7 +24,6 @@
 
                 <li class="nav-item">
                     <a href="{{ route('home') }}" class="nav-link @yield('dashboard')">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
                         </p>
@@ -32,7 +31,6 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('eventType.index') }}" class="nav-link @yield('event.type')">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Tipe Event
                         </p>
@@ -40,7 +38,6 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('event.index') }}" class="nav-link @yield('event')">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Event
                         </p>
@@ -48,7 +45,6 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('ticket.index') }}" class="nav-link @yield('ticket')">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
 
                         <i class="fa-solid fa-ticket"></i>
                         <p>
