@@ -53,6 +53,14 @@
                                                 id="role" placeholder="Masukan Nama" name="role"
                                                 value="{{ old('role', $user->role) }}" readonly>
                                         </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="balance">Saldo</label>
+                                            <input type="text"
+                                                class="form-control  @error('balance') is-invalid @enderror" id="balance"
+                                                placeholder="Masukan Nama" name="balance"
+                                                value="{{ $user->balance == null ? '0' : $user->balance->amount }}"
+                                                readonly>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

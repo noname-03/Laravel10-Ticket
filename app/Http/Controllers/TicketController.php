@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Balance;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 
@@ -63,9 +64,25 @@ class TicketController extends Controller
      */
     public function destroy($id)
     {
-        Ticket::find($id)->update([
+        $ticket = Ticket::find($id);
+        $ticket->update([
             'status' => 'inactive'
         ]);
+        $balance = Balance::where('user_id', $ticket->payment->event->user_id)->first();
+        $balance->update([
+            'amount' => $balance->amount - $ticket->payment->amount
+        ]);
+        $user = auth()->user();
+        if ($user->balance == null) {
+            Balance::create([
+                'user_id' => $user->id,
+                'amount' => $ticket->payment->amount
+            ]);
+        } else {
+            $user->balance->update([
+                'amount' => $user->balance->amount + $ticket->payment->amount
+            ]);
+        }
         return response()->json(['message' => 'Anda Telah Membatalakan Tiket Ini.!']);
     }
 }

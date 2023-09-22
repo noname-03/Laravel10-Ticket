@@ -29,4 +29,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('ticket', App\Http\Controllers\TicketController::class);
     Route::get('user/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('user.show');
     Route::get('user/{user}/update/role', [App\Http\Controllers\UserController::class, 'role'])->name('user.role');
+    Route::put('balance/{user}/increase', [App\Http\Controllers\BalanceController::class, 'increase'])->name('balance.increase');
+    Route::put('balance/{user}/decrease', [App\Http\Controllers\BalanceController::class, 'decrease'])->name('balance.decrease');
 });

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Balance;
 use App\Models\Event;
 use App\Models\Payment;
 use App\Models\Ticket;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -48,6 +50,21 @@ class PaymentController extends Controller
             'user_id' => $user->id,
             'amount' => $event->price,
         ]);
+
+        $balance = Balance::where('user_id', $event->user->id)->first();
+        if ($balance == null) {
+            Balance::create([
+                'user_id' => $event->user->id,
+                'amount' => $event->price,
+            ]);
+        } else {
+            $balance->amount = $balance->amount + $event->price;
+            // $amount = $bal->amount + $event->price;
+            // $balance = Balance::find($event->user->balance->id);
+            // $user->amount = $balance->amount + $event->price;
+            // $balance->save();
+        }
+
 
         $qrName = time() . '.' . $payment->id . '.png';
         QrCode::format('png')

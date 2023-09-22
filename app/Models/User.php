@@ -11,6 +11,7 @@ use App\Models\Social;
 use App\Models\Event;
 use App\Models\Payment;
 use App\Models\Ticket;
+use App\Models\Balance;
 
 class User extends Authenticatable
 {
@@ -66,5 +67,10 @@ class User extends Authenticatable
     public function tickets()
     {
         return $this->hasMany(Ticket::class);
+    }
+
+    public function balance()
+    {
+        return $this->hasOne(Balance::class);
     }
 }
