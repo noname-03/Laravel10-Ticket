@@ -35,6 +35,33 @@
                                             class="fas fa-plus"></i> Tambah
                                         Data</a>
                                 </div>
+                            @else
+                                {{-- button to dropdwon sort by tipe event --}}
+                                <div class="card-header">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-filter"></i> Filter
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="{{ route('event.index') }}">Semua</a>
+                                            @foreach ($eventTypes as $item)
+                                                <a class="dropdown-item"
+                                                    href="{{ route('event.index', ['type' => $item->id]) }}">{{ $item->title }}</a>
+                                            @endforeach
+                                        </div>
+                                        {{-- buatkan filter calender input date --}}
+                                        <form action="{{ route('event.index') }}" method="get">
+                                            <div class="input-group">
+                                                <input type="date" class="form-control form-control-sm" name="date"
+                                                    value="{{ request()->get('date') }}">
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-primary btn-sm"><i
+                                                            class="fas fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                             @endif
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -43,6 +70,7 @@
                                         <tr>
                                             <th style="width: 1%">No</th>
                                             <th>Nama</th>
+                                            <th>Tanggal</th>
                                             <th style="width: 5%">Action</th>
                                         </tr>
                                     </thead>
@@ -51,6 +79,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->title }}</td>
+                                                <td>{{ $item->date }}</td>
                                                 <td style="text-align: center;">
                                                     @if (Auth::user()->role == 'promotor')
                                                         <div class="btn-group" role="group" aria-label="Basic example">

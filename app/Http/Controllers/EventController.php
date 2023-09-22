@@ -12,16 +12,31 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        if (auth()->user()->role == 'user') {
-            $events = Event::all();
-            return view('pages.event.index', compact('events'));
-        } else {
-            $events = Event::where('user_id', auth()->user()->id)->get();
-            return view('pages.event.index', compact('events'));
+        $eventTypes = EventType::all();
+        $query = Event::query();
+
+        // Filter by event type
+        if ($request->has('type') && $request->type != 'all') {
+            $query->where('event_type_id', $request->type);
         }
+
+        // Filter by date
+        if ($request->has('date')) {
+            $query->whereDate('date', $request->date);
+        }
+
+        // Fetch events based on user role
+        if (auth()->user()->role == 'user') {
+            $events = $query->get();
+        } else {
+            $events = $query->where('user_id', auth()->user()->id)->get();
+        }
+
+        return view('pages.event.index', compact('events', 'eventTypes'));
     }
+
 
     /**
      * Show the form for creating a new resource.
