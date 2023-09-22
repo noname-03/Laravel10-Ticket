@@ -14,9 +14,13 @@ class EventController extends Controller
      */
     public function index()
     {
-        // $events = Event::where('user_id', auth()->user()->id)->get();
-        $events = Event::all();
-        return view('pages.event.index', compact('events'));
+        if (auth()->user()->role == 'user') {
+            $events = Event::all();
+            return view('pages.event.index', compact('events'));
+        } else {
+            $events = Event::where('user_id', auth()->user()->id)->get();
+            return view('pages.event.index', compact('events'));
+        }
     }
 
     /**
@@ -90,5 +94,6 @@ class EventController extends Controller
     {
         Event::find($id)->delete();
         return response()->json(['message' => 'Data Berhasil Di Hapus.!']);
+
     }
 }

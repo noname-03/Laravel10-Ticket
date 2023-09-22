@@ -29,11 +29,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                                <a href="{{ route('event.create') }}" type="button" class="btn btn-primary btn-sm"><i
-                                        class="fas fa-plus"></i> Tambah
-                                    Data</a>
-                            </div>
+                            @if (Auth::user()->role == 'promotor')
+                                <div class="card-header">
+                                    <a href="{{ route('event.create') }}" type="button" class="btn btn-primary btn-sm"><i
+                                            class="fas fa-plus"></i> Tambah
+                                        Data</a>
+                                </div>
+                            @endif
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example3" class="table table-bordered table-striped">
@@ -50,22 +52,31 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->title }}</td>
                                                 <td style="text-align: center;">
-                                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                                        <a href="{{ route('event.edit', $item->id) }}"
-                                                            class="btn btn-sm btn-outline-secondary">
-                                                            <i class="fas fa-edit"></i>
-                                                        </a>
-                                                        <a href="{{ route('event.show', $item->id) }}"
-                                                            class="btn btn-sm btn-outline-primary">
-                                                            <i class="fas fa-eye"></i>
-                                                        </a>
-                                                        <button type="submit"
-                                                            onclick="confirmDelete('{{ route('event.destroy', $item->id) }}')"
-                                                            class="btn btn-sm btn-outline-danger delete-button">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </div>
-                                                    {{-- </form> --}}
+                                                    @if (Auth::user()->role == 'promotor')
+                                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                                            <a href="{{ route('event.edit', $item->id) }}"
+                                                                class="btn btn-sm btn-outline-secondary">
+                                                                <i class="fas fa-edit"></i>
+                                                            </a>
+                                                            <a href="{{ route('event.show', $item->id) }}"
+                                                                class="btn btn-sm btn-outline-primary">
+                                                                <i class="fas fa-eye"></i>
+                                                            </a>
+                                                            <button type="submit"
+                                                                onclick="confirmDelete('{{ route('event.destroy', $item->id) }}')"
+                                                                class="btn btn-sm btn-outline-danger delete-button">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </div>
+                                                        {{-- </form> --}}
+                                                    @else
+                                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                                            <a href="{{ route('event.show', $item->id) }}"
+                                                                class="btn btn-sm btn-outline-primary">
+                                                                <i class="fas fa-eye"></i>
+                                                            </a>
+                                                        </div>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

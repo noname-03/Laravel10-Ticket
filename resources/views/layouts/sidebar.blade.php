@@ -29,13 +29,15 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('eventType.index') }}" class="nav-link @yield('event.type')">
-                        <p>
-                            Tipe Event
-                        </p>
-                    </a>
-                </li>
+                @if (Auth::user()->role == 'promotor')
+                    <li class="nav-item">
+                        <a href="{{ route('eventType.index') }}" class="nav-link @yield('event.type')">
+                            <p>
+                                Tipe Event
+                            </p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route('event.index') }}" class="nav-link @yield('event')">
                         <p>
@@ -43,15 +45,17 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('ticket.index') }}" class="nav-link @yield('ticket')">
+                @if (Auth::user()->role == 'user')
+                    <li class="nav-item">
+                        <a href="{{ route('ticket.index') }}" class="nav-link @yield('ticket')">
 
-                        <i class="fa-solid fa-ticket"></i>
-                        <p>
-                            Tiket
-                        </p>
-                    </a>
-                </li>
+                            <i class="fa-solid fa-ticket"></i>
+                            <p>
+                                Tiket
+                            </p>
+                        </a>
+                    </li>
+                @endif
 
             </ul>
         </nav>

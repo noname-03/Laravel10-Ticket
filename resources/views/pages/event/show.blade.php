@@ -87,8 +87,10 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <a href="{{ route('payment.index', $event->id) }}" type="submit"
-                                        class="btn btn-primary">Beli Tiket</a>
+                                    @if (Auth::user()->role == 'user')
+                                        <a href="{{ route('payment.index', $event->id) }}" type="submit"
+                                            class="btn btn-primary">Beli Tiket</a>
+                                    @endif
                                 </form>
                             </div>
                             <!-- /.col -->
@@ -96,46 +98,29 @@
                         <!-- /.row -->
                     </div>
 
-                    <div class="card-body">
-                        <table id="example3" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th style="width: 1%">No</th>
-                                    <th>Nama</th>
-                                    <th>Harga</th>
-                                    <th style="width: 5%">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($event->payments as $item)
+                    @if (Auth::user()->role == 'promotor')
+                        <div class="card-body">
+                            <table id="example3" class="table table-bordered table-striped">
+                                <thead>
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->user->name }}</td>
-                                        <td>{{ $item->amount }}</td>
-                                        <td style="text-align: center;">
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="{{ route('event.edit', $item->id) }}"
-                                                    class="btn btn-sm btn-outline-secondary">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="{{ route('event.show', $item->id) }}"
-                                                    class="btn btn-sm btn-outline-primary">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <button type="submit"
-                                                    onclick="confirmDelete('{{ route('event.destroy', $item->id) }}')"
-                                                    class="btn btn-sm btn-outline-danger delete-button">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                            {{-- </form> --}}
-                                        </td>
+                                        <th style="width: 1%">No</th>
+                                        <th>Nama</th>
+                                        <th>Harga</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
+                                </thead>
+                                <tbody>
+                                    @foreach ($event->payments as $item)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->user->name }}</td>
+                                            <td>{{ $item->amount }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    @endif
                 </div>
             </div>
             <!-- /.container-fluid -->
