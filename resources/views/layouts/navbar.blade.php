@@ -19,6 +19,10 @@
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-item dropdown-header">{{ Auth::User()->name }}</span>
                 <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('user.show', Auth::user()->id) }}">
+                    <i class="fas fa-cog mr-2"></i> Pengaturan
+                </a>
+
                 <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"><i

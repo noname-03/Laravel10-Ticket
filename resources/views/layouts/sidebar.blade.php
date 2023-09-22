@@ -46,6 +46,16 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('ticket.index') }}" class="nav-link @yield('ticket')">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+
+                        <i class="fa-solid fa-ticket"></i>
+                        <p>
+                            Tiket
+                        </p>
+                    </a>
+                </li>
 
             </ul>
         </nav>

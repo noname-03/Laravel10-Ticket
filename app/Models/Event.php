@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\EventType;
-
+use App\Models\Payment;
 
 class Event extends Model
 {
@@ -22,5 +22,10 @@ class Event extends Model
     public function eventType()
     {
         return $this->belongsTo(EventType::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 }

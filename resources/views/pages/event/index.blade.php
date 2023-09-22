@@ -106,22 +106,8 @@
 
             $("#example3").DataTable({
                 "responsive": true,
-                "lengthChange": false,
                 "autoWidth": false,
-                "buttons": [{
-                        extend: 'pdf',
-                        exportOptions: {
-                            columns: 'th:not(:last-child)'
-                        }
-                    },
-                    {
-                        extend: 'excel',
-                        exportOptions: {
-                            columns: 'th:not(:last-child)'
-                        }
-                    }
-                ],
-            }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
+            });
         });
     </script>
     <script>

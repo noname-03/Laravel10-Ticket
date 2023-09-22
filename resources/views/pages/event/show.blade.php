@@ -87,7 +87,8 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    {{-- <button type="submit" class="btn btn-primary">Detail Data</button> --}}
+                                    <a href="{{ route('payment.index', $event->id) }}" type="submit"
+                                        class="btn btn-primary">Beli Tiket</a>
                                 </form>
                             </div>
                             <!-- /.col -->
