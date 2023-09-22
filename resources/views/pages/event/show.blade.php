@@ -88,8 +88,12 @@
                                         </div>
                                     </div>
                                     @if (Auth::user()->role == 'user')
-                                        <a href="{{ route('payment.index', $event->id) }}" type="submit"
-                                            class="btn btn-primary">Beli Tiket</a>
+                                        @if ($event->is_expired == true)
+                                            <a href="{{ route('payment.index', $event->id) }}" type="submit"
+                                                class="btn btn-primary">Beli Tiket</a>
+                                        @else
+                                            <a type="submit" class="btn btn-danger" disabled>Tiket Habis</a>
+                                        @endif
                                     @endif
                                 </form>
                             </div>

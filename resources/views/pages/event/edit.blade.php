@@ -53,9 +53,9 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="title">Nama</label>
+                                            <label for="title">Judul Event</label>
                                             <input type="text" class="form-control  @error('title') is-invalid @enderror"
-                                                id="title" placeholder="Masukan Nama" name="title"
+                                                id="title" placeholder="Masukan Judul Event" name="title"
                                                 value="{{ old('title', $event->title) }}">
                                             @error('title')
                                                 <div class="invalid-feedback">
@@ -66,7 +66,7 @@
                                         <div class="form-group col-md-6">
                                             <label for="date">Tanggal</label>
                                             <input type="date" class="form-control  @error('date') is-invalid @enderror"
-                                                id="date" placeholder="Masukan Nama" name="date"
+                                                id="date" placeholder="Masukan Tanggal" name="date"
                                                 value="{{ old('date', $event->date) }}">
                                             @error('date')
                                                 <div class="invalid-feedback">
@@ -77,7 +77,7 @@
                                         <div class="form-group col-md-6">
                                             <label for="price">Harga</label>
                                             <input type="number" class="form-control  @error('price') is-invalid @enderror"
-                                                id="price" placeholder="Masukan Nama" name="price"
+                                                id="price" placeholder="Masukan Harga" name="price"
                                                 value="{{ old('price', $event->price) }}">
                                             @error('price')
                                                 <div class="invalid-feedback">

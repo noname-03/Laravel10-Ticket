@@ -82,7 +82,7 @@
                         @endif
                     </h5>
                     <a href="{{ route('user.role', $user->id) }}" class="btn btn-primary active" role="button"
-                        aria-pressed="true">Rubah
+                        aria-pressed="true">Ubah
                         Akun</a>
                 </div>
 

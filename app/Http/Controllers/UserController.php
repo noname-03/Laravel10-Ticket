@@ -19,12 +19,12 @@ class UserController extends Controller
             $user->update([
                 'role' => 'user'
             ]);
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Akun anda berhasil diubah');
         } else {
             $user->update([
                 'role' => 'promotor'
             ]);
         }
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Akun anda berhasil diubah');
     }
 }

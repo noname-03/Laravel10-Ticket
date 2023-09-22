@@ -71,6 +71,7 @@ class EventController extends Controller
     public function show($id)
     {
         $event = Event::find($id);
+        $event->is_expired = $event->date >= now()->format('Y-m-d');
         return view('pages.event.show', compact('event'));
     }
 
