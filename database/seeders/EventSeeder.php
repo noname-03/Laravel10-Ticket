@@ -19,6 +19,7 @@ class EventSeeder extends Seeder
             'description' => 'Description 1',
             'user_id' => 1,
             'event_type_id' => 1,
+            'price' => 10000,
         ]);
 
         Event::create([
@@ -27,6 +28,7 @@ class EventSeeder extends Seeder
             'description' => 'Description 2',
             'user_id' => 1,
             'event_type_id' => 2,
+            'price' => 20000,
         ]);
     }
 }

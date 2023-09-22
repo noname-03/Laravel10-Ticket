@@ -50,7 +50,9 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //
+        $event = Event::find($id);
+        $eventTypes = EventType::all();
+        return view('pages.event.show', compact('event', 'eventTypes'));
     }
 
     /**

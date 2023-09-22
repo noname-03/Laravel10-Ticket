@@ -55,6 +55,10 @@
                                                             class="btn btn-sm btn-outline-secondary">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
+                                                        <a href="{{ route('event.show', $item->id) }}"
+                                                            class="btn btn-sm btn-outline-primary">
+                                                            <i class="fas fa-eye"></i>
+                                                        </a>
                                                         <button type="submit"
                                                             onclick="confirmDelete('{{ route('event.destroy', $item->id) }}')"
                                                             class="btn btn-sm btn-outline-danger delete-button">

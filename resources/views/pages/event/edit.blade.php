@@ -36,7 +36,7 @@
                                 <form action="{{ route('event.update', $event->id) }}" method="post">
                                     @csrf @method('put')
                                     <div class="form-row">
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label for="event_type_id">Tipe Event</label>
                                             <select class="form-control selectpicker" name="event_type_id"
                                                 data-live-search="true" @error('event_type_id') is-invalid @enderror>
@@ -52,7 +52,7 @@
                                                 </p>
                                             @enderror
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label for="title">Nama</label>
                                             <input type="text" class="form-control  @error('title') is-invalid @enderror"
                                                 id="title" placeholder="Masukan Nama" name="title"
@@ -63,12 +63,23 @@
                                                 </div>
                                             @enderror
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label for="date">Tanggal</label>
                                             <input type="date" class="form-control  @error('date') is-invalid @enderror"
                                                 id="date" placeholder="Masukan Nama" name="date"
                                                 value="{{ old('date', $event->date) }}">
                                             @error('date')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="price">Harga</label>
+                                            <input type="number" class="form-control  @error('price') is-invalid @enderror"
+                                                id="price" placeholder="Masukan Nama" name="price"
+                                                value="{{ old('price', $event->price) }}">
+                                            @error('price')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>

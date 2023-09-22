@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->foreignId('event_type_id')->constrained('event_types')->onDelete('cascade');
             $table->string('title');
             $table->date('date');
+            $table->double('price');
             $table->text('description');
             $table->timestamps();
         });
